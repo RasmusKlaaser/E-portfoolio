@@ -591,6 +591,34 @@ h3.my-proffesion
     line-height: 25px;
 }
 /* portfolio */
+.portfolio .portfolio-item {
+    flex: 0 0 calc(50% - 30px); /* Takes up half the container width minus margin */
+    max-width: calc(50% - 30px);
+    margin-bottom: 30px;
+}
+
+.portfolio .portfolio-img img {
+    width: 100%;
+    display: block;
+    height: auto;
+}
+
+.portfolio .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.portfolio .portfolio-img {
+    height: 300px; /* Set a fixed height */
+    overflow: hidden;
+}
+
+.portfolio .portfolio-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This will maintain aspect ratio while covering the container */
+}
 .portfolio .container
 {
     padding-bottom: 40px;
