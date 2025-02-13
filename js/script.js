@@ -17,6 +17,25 @@ const nav = document.querySelector(".nav"),
         })
     }
 
+    function showNotification(message, isError = false) {
+        let notification = document.getElementById("notification");
+        let notificationText = document.getElementById("notification-text");
+    
+        notificationText.textContent = message;
+        notification.classList.remove("hidden"); // Ensure it's visible
+        notification.classList.toggle("error", isError);
+        notification.classList.add("show");
+    
+        // Hide the notification after 3 seconds
+        setTimeout(() => {
+            notification.classList.remove("show");
+            setTimeout(() => {
+                notification.classList.add("hidden"); // Hide after animation
+            }, 300); 
+        }, 3000);
+    }
+    
+    
     document.getElementById("sendEmailBtn").addEventListener("click", function () {
         emailjs.init("iqVdpsORlZsB-Jvi9"); // Replace with your EmailJS Public Key
     
@@ -38,13 +57,11 @@ const nav = document.querySelector(".nav"),
         };
     
         emailjs.send("service_jify6ob", "template_r9c9clq", templateParams)
-            .then(function (response) {
-                alert("Email sent successfully!");
-                console.log("Success:", response);
-            })
-            .catch(function (error) {
-                alert("Failed to send email.");
-                console.error("Error:", error);
-            });
-    });
-    
+        .then(function (response) {
+            showNotification("Email sent successfully!");
+        })
+        .catch(function (error) {
+            showNotification("Failed to send email. Please try again.", true);
+            console.error("Error:", error);
+        });
+});
