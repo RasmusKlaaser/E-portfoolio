@@ -17,6 +17,70 @@ const nav = document.querySelector(".nav"),
         })
     }
 
+    async function updateSkillPercentages() {
+        const username = "RasmusKlaaser"; // Your GitHub username
+        const skillMap = {
+            "JavaScript": "Javascript",
+            "HTML": "HTML",
+            "CSS": "CSS",
+            "Python": "Python"
+        };
+    
+        try {
+            let response = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+            let repos = await response.json();
+    
+            let languageStats = {};
+            let totalBytes = 0;
+    
+            // Fetch language breakdown per repository
+            for (let repo of repos) {
+                let langResponse = await fetch(repo.languages_url);
+                let langData = await langResponse.json();
+    
+                for (let lang in langData) {
+                    if (!languageStats[lang]) {
+                        languageStats[lang] = 0;
+                    }
+                    languageStats[lang] += langData[lang]; // Sum up bytes of code
+                    totalBytes += langData[lang];
+                }
+            }
+    
+            // Convert to percentages
+            for (let lang in languageStats) {
+                languageStats[lang] = Math.round((languageStats[lang] / totalBytes) * 100);
+            }
+    
+            console.log("GitHub Language Stats:", languageStats);
+    
+            // Update UI for matched skills
+            document.querySelectorAll(".skill-item").forEach((skill) => {
+                let skillName = skill.querySelector("h5").textContent.trim(); // Get skill name
+                for (let githubLang in languageStats) {
+                    if (skillMap[githubLang] === skillName) {
+                        let progressBar = skill.querySelector(".progress-in");
+                        let percentText = skill.querySelector(".skill-percent");
+    
+                        if (progressBar && percentText) {
+                            progressBar.style.width = `${languageStats[githubLang]}%`;
+                            percentText.textContent = `${languageStats[githubLang]}%`;
+                        }
+                    }
+                }
+            });
+        } catch (error) {
+            console.error("Error fetching GitHub data:", error);
+        }
+    }
+    
+    // ✅ Run when the page loads
+    window.onload = function () {
+        updateSkillPercentages();
+    };
+    
+
+
     function showNotification(message, isError = false) {
         let notification = document.getElementById("notification");
         let notificationText = document.getElementById("notification-text");
@@ -64,62 +128,6 @@ const nav = document.querySelector(".nav"),
             showNotification("Failed to send email. Please try again.", true);
             console.error("Error:", error);
         });
-
-
-        async function updateSkillPercentages() {
-            const username = "RasmusKlaaser"; // Your GitHub username
-            const skillMap = {
-                "JavaScript": "Javascript",
-                "HTML": "HTML",
-                "CSS": "CSS",
-                "Python": "Python"
-            };
         
-            try {
-                let response = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
-                let repos = await response.json();
-        
-                let languageStats = {};
-                let totalBytes = 0;
-        
-                for (let repo of repos) {
-                    if (repo.language) {
-                        if (!languageStats[repo.language]) {
-                            languageStats[repo.language] = 0;
-                        }
-                        languageStats[repo.language] += 1; // Counting repos by language
-                        totalBytes += 1;
-                    }
-                }
-        
-                // Convert to percentages
-                for (let lang in languageStats) {
-                    languageStats[lang] = Math.round((languageStats[lang] / totalBytes) * 100);
-                }
-        
-                console.log("Language Stats:", languageStats);
-        
-                // Update UI for matched skills
-                for (let githubLang in languageStats) {
-                    let skillName = skillMap[githubLang];
-                    if (skillName) {
-                        let progressBar = document.querySelector(`.skill-item h5:contains('${skillName}') + .progress .progress-in`);
-                        let percentText = document.querySelector(`.skill-item h5:contains('${skillName}') + .progress .skill-percent`);
-        
-                        if (progressBar && percentText) {
-                            progressBar.style.width = `${languageStats[githubLang]}%`;
-                            percentText.textContent = `${languageStats[githubLang]}%`;
-                        }
-                    }
-                }
-            } catch (error) {
-                console.error("Error fetching GitHub data:", error);
-            }
-        }
-        
-        // Run the function when the page loads
-        window.onload = updateSkillPercentages;
-        
-
 
 });
