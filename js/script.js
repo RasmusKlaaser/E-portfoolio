@@ -17,6 +17,7 @@ const nav = document.querySelector(".nav"),
         })
     }
 
+//github api skill
     async function updateSkillPercentages() {
         const username = "RasmusKlaaser"; // Your GitHub username
         const skillMap = {
@@ -74,13 +75,39 @@ const nav = document.querySelector(".nav"),
         }
     }
     
-    // ✅ Run when the page loads
     window.onload = function () {
         updateSkillPercentages();
     };
     
+// navbar scroller color
+function updateActiveNav() {
+    let sections = document.querySelectorAll("section");
+    let navLinks = document.querySelectorAll(".nav li a");
+
+    let scrollPosition = window.scrollY + 100; 
+
+    sections.forEach((section) => {
+        let top = section.offsetTop;
+        let height = section.offsetHeight;
+        let id = section.getAttribute("id");
+
+        if (scrollPosition >= top && scrollPosition < top + height) {
+            navLinks.forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === `#${id}`) {
+                    link.classList.add("active"); 
+                }
+            });
+        }
+    });
+}
+
+window.addEventListener("scroll", updateActiveNav);
+
+updateActiveNav();
 
 
+// Email send notification
     function showNotification(message, isError = false) {
         let notification = document.getElementById("notification");
         let notificationText = document.getElementById("notification-text");
@@ -99,7 +126,7 @@ const nav = document.querySelector(".nav"),
         }, 3000);
     }
     
-    
+ // Email sender   
     document.getElementById("sendEmailBtn").addEventListener("click", function () {
         emailjs.init("iqVdpsORlZsB-Jvi9"); // Replace with your EmailJS Public Key
     
@@ -130,4 +157,22 @@ const nav = document.querySelector(".nav"),
         });
         
 
+});
+
+// Scroller
+document.querySelectorAll(".nav a").forEach((link) => {
+    link.addEventListener("click", function (e) {
+        e.preventDefault();
+        let targetId = this.getAttribute("href").substring(1);
+        let targetSection = document.getElementById(targetId);
+
+        window.scrollTo({
+            top: targetSection.offsetTop - 50, 
+            behavior: "smooth"
+        });
+
+        // Manually update active class
+        document.querySelectorAll(".nav a").forEach((nav) => nav.classList.remove("active"));
+        this.classList.add("active");
+    });
 });
