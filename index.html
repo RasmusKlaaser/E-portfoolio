@@ -220,7 +220,7 @@
                     </div>
                     <div class="row">
                         <!--Courses item start-->
-                        <div class="service-item padd-15">
+                        <div class="service-item padd-15" onclick="openModal('EdTech Hackathon 2024', './images/voit.jpg', 'This was an amazing event where our team won 2nd place. We built a platform to connect students with internship opportunities.')">
                             <div class="service-item-inner">
                                 <div class="icon">
                                     <i class="fa fa-mobile-alt"></i>
@@ -228,7 +228,7 @@
                                 <h4>EdTech Hackathon 2024</h4>
                                 <p>2nd place with team Internhub</p>
                             </div>
-                        </div>
+                        </div>                                 
                         <!--Courses item end-->
                          <!--Courses item start-->
                          <div class="service-item padd-15">
@@ -346,11 +346,11 @@
                         <div class="portfolio-item padd-15">
                             <div class="portfolio-item-inner shadow-dark">
                                 <div class="portfolio-img">
-                                    <a><img src="images/Unturned.png" alt="Unturned Guide">
+                                    <a href="https://askoita22.ikt.khk.ee/veebiarendus/l%C3%B5puprojekt/index.html"><img src="images/Unturned.png" alt="Unturned Guide">
                                 </div>
                                 <div class="portfolio-info padd-15">
                                     <h4>Unturned Guide</h4>
-                                    <p>Unturned Guide was made to help new players complete in-game quests and progress through the game.</p>
+                                    <p>Unturned Guide was made to help new players complete in-game quests and progress through the game.</p></a>
                                 </div>
                             </div>
                         </div>                      
@@ -474,5 +474,15 @@
     <div id="notification" class="hidden">
         <p id="notification-text"></p>
     </div>
+    <!-- Modal Background -->
+    <!-- Modal Background -->
+<div id="courseModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modal-title">Event Title</h2>
+        <img id="modal-image" src="./images/voit.JPG" alt="Event Image">
+        <p id="modal-description">Event description will go here.</p>
+    </div>
+</div>
 </body>
 </html>

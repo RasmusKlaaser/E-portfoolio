@@ -17,6 +17,8 @@ const nav = document.querySelector(".nav"),
         })
     }
 
+    
+
 //github api skill
     async function updateSkillPercentages() {
         const username = "RasmusKlaaser"; // Your GitHub username
@@ -175,4 +177,39 @@ document.querySelectorAll(".nav a").forEach((link) => {
         document.querySelectorAll(".nav a").forEach((nav) => nav.classList.remove("active"));
         this.classList.add("active");
     });
+
+    // window pop up
+    window.onload = function () {
+        function openModal(title, image, description) {
+            document.getElementById("modal-title").textContent = title;
+            document.getElementById("modal-image").src = image;
+            document.getElementById("modal-description").textContent = description;
+    
+            document.getElementById("courseModal").style.display = "flex"; // Show modal
+        }
+    
+        
+        let closeButton = document.querySelector(".close");
+        let modal = document.getElementById("courseModal");
+    
+        if (closeButton) {
+            closeButton.addEventListener("click", function () {
+                modal.style.display = "none";
+            });
+        }
+    
+       
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+    
+        
+        window.openModal = openModal;
+    };
+    
+    
+    
+
 });
