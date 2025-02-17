@@ -893,8 +893,9 @@ h3.my-proffesion
     border-radius: 10px;
     width: 60%;
     max-width: 800px;
-    text-align: center;
+    text-align: left;
     position: relative;
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
 }
 
 /* Close Button */

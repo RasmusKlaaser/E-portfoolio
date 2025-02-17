@@ -183,10 +183,10 @@ document.querySelectorAll(".nav a").forEach((link) => {
         function openModal(title, image, description) {
             document.getElementById("modal-title").textContent = title;
             document.getElementById("modal-image").src = image;
-            document.getElementById("modal-description").textContent = description;
-    
+            document.getElementById("modal-description").innerHTML = description; // Use innerHTML instead of textContent
             document.getElementById("courseModal").style.display = "flex"; // Show modal
         }
+        
     
         
         let closeButton = document.querySelector(".close");
