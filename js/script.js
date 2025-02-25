@@ -1,23 +1,30 @@
-const nav = document.querySelector(".nav"),
-    navList = nav.querySelectorAll("li")
-    totalNavList = navList.length;
-    allSection = document.querySelectorAll("section"),
-    totalSection = allSection.length;
-    for(let i=0; i<totalNavList; i++)
-    {
-        const a = navList[i].querySelector("a")
-        a.addEventListener("click", function()
-        {
-            for(let j=0; j<totalNavList; j++)
-            {
-                navList[j].querySelector("a").classList.remove("active")
-            }
-            this.classList.add("active")
-            showSection(this);
-        })
+document.addEventListener("DOMContentLoaded", function () {
+    const navToggler = document.querySelector(".nav-toggler");
+    const aside = document.querySelector(".aside");
+    const mainContent = document.querySelector(".main-content");
+
+    navToggler.addEventListener("click", function () {
+        aside.classList.toggle("open");
+
+        // Dynamically adjust padding
+        adjustMainContentPadding();
+    });
+
+    // Function to fix padding dynamically
+    function adjustMainContentPadding() {
+        if (aside.classList.contains("open") && window.innerWidth > 1199) {
+            mainContent.style.marginLeft = "270px"; // Shift content
+        } else {
+            mainContent.style.marginLeft = "0"; // Reset if closed or on small screen
+        }
     }
 
-    
+    // Call function on window resize
+    window.addEventListener("resize", adjustMainContentPadding);
+
+    // Run once to fix layout on page load
+    adjustMainContentPadding();
+});
 
 //github api skill
     async function updateSkillPercentages() {
@@ -208,6 +215,6 @@ document.querySelectorAll(".nav a").forEach((link) => {
         
         window.openModal = openModal;
     };
-    
-    
 });
+
+
