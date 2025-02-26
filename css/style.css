@@ -314,7 +314,7 @@ h3.my-proffesion
     width: 80px;
     border-bottom: 10px solid var(--skin-color);
     border-right: 10px solid var(--skin-color);
-    right:10px;
+    right: -10px;
     bottom: -30px;
 }
 .home-img::before
@@ -325,7 +325,7 @@ h3.my-proffesion
     width: 80px;
     border-top: 10px solid var(--skin-color);
     border-left: 10px solid var(--skin-color);
-    left: 10px;
+    left: -10px;
     top: -40px;
 }
 .home .home-img img
@@ -795,46 +795,34 @@ h3.my-proffesion
     }
 }
 
-@media (max-width: 991px) {
-    .aside {
-        width: 100%;
-        left: -100%; /* Completely off-screen */
-        height: auto;
-        padding: 10px 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .aside.open {
-        left: 0; /* Slide in when toggled */
-    }
-
-    .nav-toggler {
+@media (max-width: 991px)
+{
+    .home .home-img
+    {
         display: block;
-        left: auto;
-        right: 20px;
-    }
-
-    .main-content {
-        padding-left: 0 !important;
+        position: relative;
+        max-width: 60%;
+        margin: auto;
+        text-align: center;
     }
 }
 
 
-@media (max-width:767px)
-{   
-    .contact .contact-form .col-6,
-    .contact .contact-info-item,
-    .portfolio .portfolio-item,
-    .service .service-item,
-    .about .about-content .experience,
-    .about .about-content .education,
-    .about .about-content .skills,
-    .about .about-content .personal-info
-    {
-        flex: 0 0 100%;
-        max-width: 100%;
+@media (max-width: 767px) {
+    .home-img::after, .home-img::before {
+        height: 50px; /* Smaller for mobile */
+        width: 50px;
+        border-width: 5px; /* Reduce thickness */
+    }
+
+    .home-img::after {
+        right: 5px;
+        bottom: -20px;
+    }
+
+    .home-img::before {
+        left: 5px;
+        top: -20px;
     }
 }
 
