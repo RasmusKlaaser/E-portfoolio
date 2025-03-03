@@ -136,36 +136,44 @@ updateActiveNav();
     }
     
  // Email sender   
-    document.getElementById("sendEmailBtn").addEventListener("click", function () {
-        emailjs.init("iqVdpsORlZsB-Jvi9"); // Replace with your EmailJS Public Key
-    
-        let name = document.querySelector("input[placeholder='Name']").value;
-        let email = document.querySelector("input[placeholder='Email']").value;
-        let subject = document.querySelector("input[placeholder='Subject']").value;
-        let message = document.querySelector("textarea[placeholder='Message']").value;
-    
-        if (!name || !email || !subject || !message) {
-            alert("Please fill in all fields.");
-            return;
-        }
-    
-        let templateParams = {
-            from_name: name,
-            from_email: email,
-            subject: subject,
-            message: message
-        };
-    
-        emailjs.send("service_jify6ob", "template_r9c9clq", templateParams)
-        .then(function (response) {
-            showNotification("Email sent successfully!");
-        })
-        .catch(function (error) {
-            showNotification("Failed to send email. Please try again.", true);
-            console.error("Error:", error);
-        });
-        
+ document.getElementById("sendEmailBtn").addEventListener("click", function () {
+    emailjs.init("iqVdpsORlZsB-Jvi9"); // Replace with your EmailJS Public Key
 
+    let nameField = document.querySelector("input[placeholder='Name']");
+    let emailField = document.querySelector("input[placeholder='Email']");
+    let subjectField = document.querySelector("input[placeholder='Subject']");
+    let messageField = document.querySelector("textarea[placeholder='Message']");
+
+    let name = nameField.value.trim();
+    let email = emailField.value.trim();
+    let subject = subjectField.value.trim();
+    let message = messageField.value.trim();
+
+    if (!name || !email || !subject || !message) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    let templateParams = {
+        from_name: name,
+        from_email: email,
+        subject: subject,
+        message: message
+    };
+
+    emailjs.send("service_jify6ob", "template_r9c9clq", templateParams)
+    .then(function (response) {
+        showNotification("Email sent successfully!");
+
+        nameField.value = "";
+        emailField.value = "";
+        subjectField.value = "";
+        messageField.value = "";
+    })
+    .catch(function (error) {
+        showNotification("Failed to send email. Please try again.", true);
+        console.error("Error:", error);
+    });
 });
 
 // Scroller
