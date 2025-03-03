@@ -1,30 +1,20 @@
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const navToggler = document.querySelector(".nav-toggler");
     const aside = document.querySelector(".aside");
-    const mainContent = document.querySelector(".main-content");
-
+    
     navToggler.addEventListener("click", function () {
         aside.classList.toggle("open");
-
-        // Dynamically adjust padding
-        adjustMainContentPadding();
-    });
-
-    // Function to fix padding dynamically
-    function adjustMainContentPadding() {
-        if (aside.classList.contains("open") && window.innerWidth > 1199) {
-            mainContent.style.marginLeft = "270px"; // Shift content
+        if (aside.classList.contains("open")) {
+            navToggler.style.left = "300px";
         } else {
-            mainContent.style.marginLeft = "0"; // Reset if closed or on small screen
+            navToggler.style.left = "20px";
         }
-    }
-
-    // Call function on window resize
-    window.addEventListener("resize", adjustMainContentPadding);
-
-    // Run once to fix layout on page load
-    adjustMainContentPadding();
+    });
 });
+
+
 
 //github api skill
     async function updateSkillPercentages() {

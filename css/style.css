@@ -795,34 +795,167 @@ h3.my-proffesion
     }
 }
 
-@media (max-width: 991px)
-{
-    .home .home-img
-    {
-        display: block;
-        position: relative;
-        max-width: 60%;
-        margin: auto;
+@media (max-width: 991px) {
+    .main-content {
+        padding-left: 0;
+    }
+
+    .row {
+        flex-direction: column; /* Stack items */
+        align-items: center;
+    }
+
+    .home .home-info, .home .home-img {
+        flex: 0 0 100%;
+        max-width: 100%;
         text-align: center;
+    }
+
+    .home .home-img img {
+        width: 80%;
+        height: auto;
     }
 }
 
 
 @media (max-width: 767px) {
-    .home-img::after, .home-img::before {
-        height: 50px; /* Smaller for mobile */
-        width: 50px;
-        border-width: 5px; /* Reduce thickness */
+    /* General Section Improvements */
+    .section {
+        padding: 50px 15px; /* Increase padding for better spacing */
     }
 
-    .home-img::after {
-        right: 5px;
-        bottom: -20px;
+    .container {
+        padding: 0 15px; /* Use more screen space */
+        max-width: 100%;
     }
 
-    .home-img::before {
-        left: 5px;
-        top: -20px;
+    .section-title h2 {
+        font-size: 32px; /* Bigger titles */
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .btn {
+        padding: 12px 30px; /* Make buttons bigger */
+        font-size: 16px;
+    }
+
+    /* Home Section */
+    .home .home-info {
+        text-align: center;
+    }
+
+    .home .home-img {
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 70px;
+    }
+
+    .home .home-img img {
+        width: 80%;
+        max-width: 300px;
+        border-radius: 10px;
+    }
+
+    /* About Section */
+    .about .about-content {
+        flex-direction: column;
+    }
+
+    .about .about-content .personal-info,
+    .about .about-content .skills {
+        flex: 0 0 100%;
+        max-width: 100%;
+        text-align: center;
+    }
+    .about .about-content .skills {
+        padding: 0; /* Remove padding to allow full width */
+        width: 80vw; /* Force full viewport width */
+    }
+
+    .about .about-content .skills .skill-item {
+        width: 100%;
+        padding: 0; /* Remove extra padding */
+    }
+
+    .about .about-content .skills .skill-item .progress {
+        height: 22px; /* Keep it thick */
+        width: 90vw; /* Make it full width */
+        margin-left: -10px; /* Adjust to align with screen */
+    }
+
+    .about .about-content .skills .skill-item .progress-in {
+        height: 100%; /* Fill the bar properly */
+        border-radius: 6px; /* Smooth edges */
+    }
+
+    .about .about-content .skills .skill-item .skill-percent {
+        top: -35px;
+        font-size: 14px;
+        right: 10px;
+        width: auto;
+    }
+
+    /* Experience & Courses */
+    .about .about-content .education,
+    .about .about-content .experience,
+    .courses .service-item {
+        flex: 0 0 100%;
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .courses .row {
+        justify-content: center;
+    }
+
+    .courses .service-item .service-item-inner {
+        padding: 20px;
+    }
+
+    /* Portfolio */
+    .portfolio .portfolio-item {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .portfolio .portfolio-img {
+        height: auto;
+    }
+
+    .portfolio .portfolio-img img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    /* Contact */
+    .contact .contact-info-item {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .contact .contact-form {
+        max-width: 100%;
+    }
+
+    .contact .contact-form .form-control {
+        height: 55px;
+        font-size: 16px;
+    }
+
+    /* Modal */
+    .modal-content {
+        width: 90%;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .modal-content {
+        width: 90%;
     }
 }
 
