@@ -904,6 +904,7 @@ h3.my-proffesion
         flex: 0 0 100%;
         max-width: 100%;
         text-align: center;
+        width: 90vw;
     }
 
     .courses .row {
@@ -939,6 +940,7 @@ h3.my-proffesion
 
     .contact .contact-form {
         max-width: 100%;
+        width: 80vh;
     }
 
     .contact .contact-form .form-control {
